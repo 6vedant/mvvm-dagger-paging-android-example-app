@@ -5,7 +5,8 @@ import dagger.android.AndroidInjectionModule
 
 @Module(
     includes = [
-        AndroidInjectionModule::class
+        AndroidInjectionModule::class,
+        ViewModelModule::class,
     ]
 )
 class AppModule
