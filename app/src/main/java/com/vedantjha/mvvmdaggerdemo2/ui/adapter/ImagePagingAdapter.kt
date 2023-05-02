@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vedantjha.mvvmdaggerdemo2.data.model.ImageResponse
 import com.vedantjha.mvvmdaggerdemo2.databinding.ImageItemBinding
 
-class ImagePagingAdapter(private val navigate: (ImageResponse, ImageView) -> Unit) :
+class ImagePagingAdapter() :
     PagingDataAdapter<ImageResponse, ImagePagingAdapter.ImageListItemViewHolder>(DiffCallback()) {
 
 
@@ -40,7 +40,7 @@ class ImagePagingAdapter(private val navigate: (ImageResponse, ImageView) -> Uni
                 shouldRound = true
 
                 binding.root.setOnClickListener {
-                    navigate.invoke(imageResponse, binding.imageView)
+                    //navigate.invoke(imageResponse, binding.imageView)
                 }
                 executePendingBindings()
             }
