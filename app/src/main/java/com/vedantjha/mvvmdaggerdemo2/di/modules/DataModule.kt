@@ -1,5 +1,7 @@
 package com.vedantjha.mvvmdaggerdemo2.di.modules
 
+import com.vedantjha.mvvmdaggerdemo2.api.APIService
+import com.vedantjha.mvvmdaggerdemo2.data.repository.APIRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -9,7 +11,7 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun providesRepository(): Int {
-        return 1
+    fun providesRepository(apiService: APIService): APIRepository {
+        return APIRepository(apiService)
     }
 }
