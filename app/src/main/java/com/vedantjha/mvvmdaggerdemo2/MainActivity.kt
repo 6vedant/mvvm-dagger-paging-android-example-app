@@ -2,6 +2,7 @@ package com.vedantjha.mvvmdaggerdemo2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -29,7 +30,8 @@ class MainActivity : DaggerAppCompatActivity() {
 
     private var job: Job? = null
 
-    private var adapter: ImagePagingAdapter = ImagePagingAdapter()
+    private val adapter =
+        ImagePagingAdapter { imagesResponse, imageView -> navigate(imagesResponse, imageView) }
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -43,6 +45,7 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         setAdapter()
 
@@ -70,12 +73,20 @@ class MainActivity : DaggerAppCompatActivity() {
         )
 
         adapter.addLoadStateListener {
-            toast("Loading...")
+            //toast("Loading...")
+            binding.progress.visibility = View.GONE
 
             if (it.refresh is LoadState.Error) {
-                toast("Error Occurred!")
+               toast("Error Occurred!")
             }
+
         }
+    }
+
+    private fun navigate(imagesResponse: ImageResponse, imageView: ImageView) {
+        // val extras = FragmentNavigatorExtras(imageView to imagesResponse.urls.regular) not working
+
+
     }
 
 }
