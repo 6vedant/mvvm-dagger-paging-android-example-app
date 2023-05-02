@@ -28,7 +28,7 @@ interface AppComponent : AndroidInjector<MainApplication> {
 
         fun build(): AppComponent
 
-       // fun inject(activity: MainActivity)
+       //fun inject(activity: MainActivity)
     }
 
     override fun inject(app: MainApplication)

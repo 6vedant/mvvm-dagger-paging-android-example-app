@@ -11,16 +11,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.vedantjha.mvvmdaggerdemo2.data.model.ImageResponse
 import com.vedantjha.mvvmdaggerdemo2.databinding.ActivityMainBinding
+import com.vedantjha.mvvmdaggerdemo2.di.AppComponent
 import com.vedantjha.mvvmdaggerdemo2.ui.adapter.ImagePagingAdapter
 import com.vedantjha.mvvmdaggerdemo2.ui.adapter.LoadingStateAdapter
 import com.vedantjha.mvvmdaggerdemo2.ui.viewmodels.ImageListViewModel
 import com.vedantjha.mvvmdaggerdemo2.utils.toast
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private var hasInitiatedInitialCall = false
@@ -61,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setAdapter() {
-        binding.recyclerView.adapter = adapter.withLoadStateFooter(
+        binding.imagesList.adapter = adapter.withLoadStateFooter(
             LoadingStateAdapter {
                 adapter.retry()
             }

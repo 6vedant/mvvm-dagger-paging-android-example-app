@@ -31,11 +31,10 @@ class NetworkModule {
             .cache(cache)
             .addInterceptor { chain: Interceptor.Chain ->
                 val newRequest = chain.request().newBuilder()
-                    .addHeader("Authorization", "Client-ID" + Config.SPLASH_API_KEY)
+                    .addHeader("Authorization", "Client-ID " + Config.SPLASH_API_KEY)
                     .build()
-                chain.proceed(request = newRequest)
+                chain.proceed(newRequest)
             }
-
         if (BuildConfig.DEBUG) builder.addInterceptor(loggingInterceptor)
         return builder.build()
     }
