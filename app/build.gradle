@@ -40,11 +40,16 @@ android {
 }
 
 dependencies {
+    def lifecycle_version = "2.4.0"
+    def activity_version = "1.7.1"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // activity - ktx
+    implementation "androidx.activity:activity-ktx:$activity_version"
 
     // dagger
     implementation 'com.google.dagger:dagger:2.46'
@@ -59,7 +64,8 @@ dependencies {
 
     //pagination
     implementation "androidx.paging:paging-runtime-ktx:3.0.0-beta03"
-    def lifecycle_version = "2.4.0"
+
+    // lifecycle viewmodels
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
